@@ -1,0 +1,35 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="/urls">TinyApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/urls">My URLs</a>
+        <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
+      </div>
+      <!-- if login: display username/user and logout button else display login form -->
+      <!-- restarting the server won't affect the cookie stored in the browser-->
+      <% if (user) { %>
+        <form class="form-inline" action="/logout" method="POST">
+          <a class="nav-item" style="margin-right: 10px; color: white;"> 🔓 logged in as: <b><%= user["email"] %></b> </a>
+          <button type="submit" class="btn btn-outline-light">Logout</button>
+        </form>
+      <% } else if (!user) { %>
+        <div class="nav-item">
+          <a class="btn btn-warning" href="/register">Register</a>
+          <a class="btn btn-primary" href="/login">Login</a>
+        </div>
+      <% } %>
+    </div>
+    <!-- <form class="form-inline">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+    </form> -->
+  </nav>
+</header>
