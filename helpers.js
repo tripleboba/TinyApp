@@ -71,10 +71,22 @@ const urlsForUser = (id, urlDatabase) => {
   return userURLs;
 };
 
+// handle longURL short input: google.com -> http://www.google.com
+const longURLinput = (input) => {
+  let longURL = '';
+  if (input.includes('http://www.')) {
+    longURL = input;
+  } else {
+    longURL = `http://www.${input}`;
+  }
+  return longURL;
+}
+
 module.exports = {
   generateRandomID,
   checkEmail,
   getUserByEmail,
   authorizedUser,
-  urlsForUser
+  urlsForUser,
+  longURLinput
 };

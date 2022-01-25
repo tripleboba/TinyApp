@@ -1,4 +1,6 @@
-const {generateRandomID, checkEmail, authorizedUser, urlsForUser} = require("./helpers");
+const { generateRandomID, checkEmail,
+        authorizedUser, urlsForUser,
+        longURLinput} = require("./helpers");
 const express = require("express");
 const app = express();
 const PORT = 8000;
@@ -94,7 +96,9 @@ app.post("/urls", (req, res) => {
   // take input from submitted form and store in urlDatabase{}
   if (!req.session.user_id) res.redirect('/login');
   else {
-    const longURL = `http://www.${req.body.longURL}`; // so that input would be shorter: example.com
+
+    const longURL = longURLinput(req.body.longURL);
+    // `http://www.${req.body.longURL}`; // so that input would be shorter: example.com
     const shortURL = generateRandomID(); // generate bitly
     const user_id = req.session.user_id;
     // update according to different user_id
@@ -168,7 +172,8 @@ app.post("/urls/:shortURL/update", (req, res) => {
     const shortURL = req.params.shortURL;
     const userID = urlDatabase[shortURL]['userID'];
     if (user_id === userID) {
-      const longURL = `http://www.${req.body.longURL}`;
+      const longURL = longURLinput(req.body.longURL);
+      // `http://www.${req.body.longURL}`;
       urlDatabase[shortURL]['longURL'] = longURL;  // update change to the database
       // console.log("shortURL: "+shortURL);
       // console.log("longURL: "+longURL);
