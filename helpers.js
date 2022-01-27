@@ -27,12 +27,10 @@ const checkEmail = (email, users) => {
 };
 // similar to checkEmail: taking in email but return user's id
 const getUserByEmail = (email, users) => {
-  if (checkEmail(email, users)) return user;
+  for (let user in users) {
+    if (checkEmail(email, users)) return user;
+  }
   return false;
-  // for (let user in users) {
-  //   const user_email = users[user]['email'];
-  //   if (email === user_email) return user;
-  // }
 };
 
 // check if pwd is correct
