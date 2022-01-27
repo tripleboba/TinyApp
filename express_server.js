@@ -54,7 +54,7 @@ const users = {
   }
 };
 
-// registers a handler on the root path localhost:8080/
+// a handler on the root path localhost:8080/
 app.get("/", (req, res) => {
   res.send("root page");
 });
@@ -96,9 +96,7 @@ app.post("/urls", (req, res) => {
   // take input from submitted form and store in urlDatabase{}
   if (!req.session.user_id) res.redirect('/login');
   else {
-
     const longURL = longURLinput(req.body.longURL);
-    // `http://www.${req.body.longURL}`; // so that input would be shorter: example.com
     const shortURL = generateRandomID(); // generate bitly
     const user_id = req.session.user_id;
     // update according to different user_id
@@ -141,7 +139,7 @@ app.post("/urls/:shortURL/delete", (req, res) => {
     const userID = urlDatabase[shortURL]['userID'];
     if (user_id === userID) {
       delete urlDatabase[shortURL];
-      // redirect/update back to /urls page after delete from database
+      // redirect back to /urls page after delete from database
       res.redirect("/urls");
     }
   }
@@ -173,10 +171,7 @@ app.post("/urls/:shortURL/update", (req, res) => {
     const userID = urlDatabase[shortURL]['userID'];
     if (user_id === userID) {
       const longURL = longURLinput(req.body.longURL);
-      // `http://www.${req.body.longURL}`;
       urlDatabase[shortURL]['longURL'] = longURL;  // update change to the database
-      // console.log("shortURL: "+shortURL);
-      // console.log("longURL: "+longURL);
       
       const templateVars = {
         shortURL,
@@ -191,7 +186,7 @@ app.post("/urls/:shortURL/update", (req, res) => {
 //display login page
 app.get('/login', (req, res) => {
   if (req.session.user_id) res.redirect('/urls');
-  else res.render('pages/account');
+  res.render('pages/account');
 });
 // handle user login form in partial header.ejs
 app.post("/login", (req, res) => {
@@ -227,7 +222,7 @@ app.post("/logout", (req, res) => {
 // display new user register page
 app.get("/register", (req, res) => {
   if (req.session.user_id) res.redirect('/urls');
-  else res.render('pages/account');
+  res.render('pages/account');
 });
 // handle register form - add new user to users_database{}
 app.post("/register", (req, res) => {
@@ -235,7 +230,8 @@ app.post("/register", (req, res) => {
     res.status(400).send('Email / Password is empty!');
   } else if (checkEmail(req.body.email, users)) {
     res.status(400).send('Email is already used! Please login instead.');
-  } else {
+  } 
+  else {
     const id = generateRandomID();
     const email = req.body.email;
     const password = req.body.password;

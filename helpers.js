@@ -27,10 +27,12 @@ const checkEmail = (email, users) => {
 };
 // similar to checkEmail: taking in email but return user's id
 const getUserByEmail = (email, users) => {
-  for (let user in users) {
-    const user_email = users[user]['email'];
-    if (email === user_email) return user;
-  }
+  if (checkEmail(email, users)) return user;
+  return false;
+  // for (let user in users) {
+  //   const user_email = users[user]['email'];
+  //   if (email === user_email) return user;
+  // }
 };
 
 // check if pwd is correct
@@ -71,16 +73,18 @@ const urlsForUser = (id, urlDatabase) => {
   return userURLs;
 };
 
-// handle longURL short input: google.com -> http://www.google.com
+// handle longURL input
 const longURLinput = (input) => {
   let longURL = '';
   if (input.includes('http://www.')) {
     longURL = input;
+  } else if (input.includes('www.')) {
+    longURL = `http://${input}`;
   } else {
     longURL = `http://www.${input}`;
   }
   return longURL;
-}
+};
 
 module.exports = {
   generateRandomID,

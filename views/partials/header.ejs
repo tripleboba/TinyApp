@@ -16,7 +16,7 @@
           <a class="nav-item" style="margin-right: 10px; color: white;"> 🔓 logged in as: <b><%= user["email"] %></b> </a>
           <button type="submit" class="btn btn-outline-light">Logout</button>
         </form>
-      <% } else if (!user) { %>
+      <% } else { %>
         <div class="nav-item">
           <a class="btn btn-warning" href="/register">Register</a>
           <a class="btn btn-primary" href="/login">Login</a>
