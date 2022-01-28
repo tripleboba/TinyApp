@@ -26,7 +26,7 @@ const checkEmail = (email, users) => {
   return false;
 };
 // similar to checkEmail: taking in email but return user's id
-const getUserByEmail = (email, users) => {
+const getUserIDByEmail = (email, users) => {
   for (let user in users) {
     if (checkEmail(email, users)) return user;
   }
@@ -87,8 +87,9 @@ const longURLinput = (input) => {
 module.exports = {
   generateRandomID,
   checkEmail,
-  getUserByEmail,
+  getUserIDByEmail,
   authorizedUser,
   urlsForUser,
-  longURLinput
+  longURLinput,
+  bcrypt
 };
