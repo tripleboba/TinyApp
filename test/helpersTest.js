@@ -1,11 +1,6 @@
-const { url } = require("inspector");
-const { generateRandomID,
-  checkEmail,
-  getUserIDByEmail,
-  authorizedUser,
-  urlsForUser,
-  longURLinput,
-  bcrypt } = require("../helpers.js");
+const { generateRandomID, checkEmail,
+        getUserIDByEmail, authorizedUser,
+        urlsForUser, longURLinput, bcrypt } = require("../helpers.js");
 
 const users = {
   "aJ48lW": {
@@ -91,7 +86,7 @@ describe("#urlsForUser", () => {
     assert.deepEqual(result, expect);
 
     const result2 = urlsForUser("1A2b3C", urlDatabase);
-    const expect2 = {"rAnd0m" : "https://www.amazon.ca"};
+    const expect2 = {"rAnd0m": "https://www.amazon.ca"};
     assert.deepEqual(result2, expect2);
   });
   it("return empty {} if user is not in usersDB", ()  => {

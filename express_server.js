@@ -1,6 +1,5 @@
 const { generateRandomID, checkEmail,
-        authorizedUser, urlsForUser,
-        longURLinput} = require("./helpers");
+        authorizedUser, urlsForUser, longURLinput} = require("./helpers");
 const express = require("express");
 const app = express();
 const PORT = 8000;
@@ -237,10 +236,10 @@ app.post("/register", (req, res) => {
     const password = req.body.password;
     const hashedPwd = bcrypt.hashSync(password, 10);
     users[id] = {id, email, hashedPwd};
-      // console.log(id);
-      // console.log(email);
-      // console.log(password);
-      // console.log(users);
+    // console.log(id);
+    // console.log(email);
+    // console.log(password);
+    // console.log(users);
     // res.cookie("user_id", id);
     req.session.user_id = id;
     res.redirect("/urls");
