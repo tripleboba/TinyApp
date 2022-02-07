@@ -4,8 +4,8 @@ const bcrypt = require('bcryptjs');
   - using cypto module
   - randomBytes of 3 bytes but to hex 1 byte = 2 chars */
 const generateRandomID = () => {
-  let crypto = require("crypto");
-  let id = crypto.randomBytes(3).toString("hex");
+  const crypto = require("crypto");
+  const id = crypto.randomBytes(3).toString("hex");
   return id;
 };
 
@@ -19,7 +19,7 @@ const generateRandomID = () => {
 
 // check if email is in database
 const checkEmail = (email, users) => {
-  for (let user in users) {
+  for (const user in users) {
     const user_email = users[user]['email'];
     if (email === user_email) return true;
   }
@@ -27,7 +27,7 @@ const checkEmail = (email, users) => {
 };
 // similar to checkEmail: taking in email but return user's id
 const getUserIDByEmail = (email, users) => {
-  for (let user in users) {
+  for (const user in users) {
     if (checkEmail(email, users)) return user;
   }
   return false;
@@ -35,7 +35,7 @@ const getUserIDByEmail = (email, users) => {
 
 // check if pwd is correct
 // const checkPassword = (password, users) => {
-//   for (let id in users) {
+//   for (const id in users) {
 //     const user_password = users[id]['password'];
 //     if (password === user_password) return true;
 //   }
@@ -74,12 +74,12 @@ const urlsForUser = (id, urlDatabase) => {
 // handle longURL input
 const longURLinput = (input) => {
   let longURL = '';
-  if (input.includes('http://www.')) {
+  if (input.includes('https://www.')) {
     longURL = input;
   } else if (input.includes('www.')) {
-    longURL = `http://${input}`;
+    longURL = `https://${input}`;
   } else {
-    longURL = `http://www.${input}`;
+    longURL = `https://www.${input}`;
   }
   return longURL;
 };
