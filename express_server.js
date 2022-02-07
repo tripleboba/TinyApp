@@ -42,13 +42,11 @@ const users = {
   "aJ48lW": {
     id: "aJ48lW",
     email: "a@gmail.com",
-    // password: "a"
     hashedPwd: bcrypt.hashSync("a", 10)
   },
   "1A2b3C": {
     id: "1A2b3C",
     email: "b@gmail.com",
-    // password: "b"
     hashedPwd: bcrypt.hashSync("b",10)
   }
 };
@@ -67,7 +65,7 @@ app.get("/urls", (req, res) => {
     const user_id = req.session.user_id;
     const templateVars = {
       urls: urlsForUser(user_id, urlDatabase),
-      user: users[user_id] // user_id already a string
+      user: users[user_id]
     };
     res.render("pages/urls_index", templateVars);
   }
@@ -89,9 +87,6 @@ app.get("/urls/new", (req, res) => {
   }
 });
 app.post("/urls", (req, res) => {
-  // console.log(req.body);  // see what data goes into longURL key - from input form
-  // ^ return an obj {longURL: *input data*}
-  // res.send("Submitted!"); // send str "Submitted" back to /urls the browser when hit submit
   // take input from submitted form and store in urlDatabase{}
   if (!req.session.user_id) res.redirect('/login');
   else {
@@ -121,7 +116,6 @@ app.get("/urls/:shortURL", (req, res) => {
     const user_id = req.session.user_id;
     const templateVars = {
       shortURL,
-      // longURL: urlDatabase[shortURL]['longURL'],
       longURL: urlsForUser(user_id, urlDatabase)[shortURL],
       user: users[user_id]
     };
@@ -170,7 +164,7 @@ app.post("/urls/:shortURL/update", (req, res) => {
     const userID = urlDatabase[shortURL]['userID'];
     if (user_id === userID) {
       const longURL = longURLinput(req.body.longURL);
-      urlDatabase[shortURL]['longURL'] = longURL;  // update change to the database
+      urlDatabase[shortURL]['longURL'] = longURL;
       
       const templateVars = {
         shortURL,
@@ -189,8 +183,6 @@ app.get('/login', (req, res) => {
 });
 // handle user login form in partial header.ejs
 app.post("/login", (req, res) => {
-  // const username = req.body.username;
-  // console.log(username);
   if (!req.body.email || !req.body.password) {
     res.status(400).send('Email / Password is empty!');
   } else if (!checkEmail(req.body.email, users)) {
@@ -200,17 +192,12 @@ app.post("/login", (req, res) => {
   } else if (authorizedUser(req.body.email, req.body.password, users)) {
     const email = req.body.email;
     const password = req.body.password;
-    // const hashedPwd = bcrypt.hashSync(password, 10);
     const user_id = authorizedUser(email, password, users);
-    // res.cookie("user_id", user_id);
     req.session.user_id = user_id;
     res.redirect("/urls");
   }
-  // const user_id = req.body.user_id;
-  // set the cookie for username when user login
-  // res.cookie("username", username);
-
 });
+
 // handle user logout
 app.post("/logout", (req, res) => {
   // res.clearCookie("user_id");
@@ -236,11 +223,6 @@ app.post("/register", (req, res) => {
     const password = req.body.password;
     const hashedPwd = bcrypt.hashSync(password, 10);
     users[id] = {id, email, hashedPwd};
-    // console.log(id);
-    // console.log(email);
-    // console.log(password);
-    // console.log(users);
-    // res.cookie("user_id", id);
     req.session.user_id = id;
     res.redirect("/urls");
   }

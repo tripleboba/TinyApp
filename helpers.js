@@ -9,14 +9,6 @@ const generateRandomID = () => {
   return id;
 };
 
-// const users = {
-//   "userRandomID": {
-//     id: "userRandomID",
-//     email: "user@example.com",
-//     password: "purple-monkey-dinosaur"
-//   }
-// }
-
 // check if email is in database
 const checkEmail = (email, users) => {
   for (const user in users) {
@@ -25,6 +17,7 @@ const checkEmail = (email, users) => {
   }
   return false;
 };
+
 // similar to checkEmail: taking in email but return user's id
 const getUserIDByEmail = (email, users) => {
   for (const user in users) {
@@ -32,15 +25,6 @@ const getUserIDByEmail = (email, users) => {
   }
   return false;
 };
-
-// check if pwd is correct
-// const checkPassword = (password, users) => {
-//   for (const id in users) {
-//     const user_password = users[id]['password'];
-//     if (password === user_password) return true;
-//   }
-//   return false;
-// };
 
 // get user_id if email and pwd pass else return false
 const authorizedUser = (email, password, users) => {
@@ -53,11 +37,6 @@ const authorizedUser = (email, password, users) => {
   }
   return false;
 };
-
-// b6UTxQ: {
-//   longURL: "https://www.tsn.ca",
-//   userID: "aJ48lW"
-// }
 
 // return urls that created by userID in urlDB that is  === current login user_id
 const urlsForUser = (id, urlDatabase) => {
