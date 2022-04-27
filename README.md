@@ -4,6 +4,16 @@ Project duration: 4 days
 
 A RESTful application using  Express framework and Node to let users shorten long URLs into bit.ly form.
 
+### Needed Improvement
+* `create new url` form handling valid inputs that
+  * start with:
+    - [x]: https://
+    - [x]: https://www.
+    - [ ]: https://example.com
+    - [x]: www.
+  -[ ] have valid url ending
+
+
 ### Final Product
 
 ![Login Page](display/loginPage.png)
