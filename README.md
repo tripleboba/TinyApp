@@ -7,6 +7,9 @@ A RESTful application using  Express framework and Node to let users shorten lon
 ### Needed Improvement
 * `create new url` form handling valid inputs that
   * start with:
+  ☑️
+  ⬜️
+  ◻️
     - [x] https://
     - [x] https://www.
     - [ ] https://example.com
