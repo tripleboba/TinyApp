@@ -1,5 +1,5 @@
 # Turn Bit.ly
-> Documentation: [Turn Bit.ly wiki](https://github.com/tripleboba/Turn-Bitly/wiki)
+> Documentation: [Project's Wiki](https://github.com/tripleboba/Turn-Bitly/wiki)
 
 Project duration: 4 days
 
