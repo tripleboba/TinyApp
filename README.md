@@ -1,16 +1,18 @@
-## Turn Bit.ly
+# Turn Bit.ly
 
-A full stack web application built with Node and Express that allows users to shorten long URLs into bit.ly form.
+Project duration: 4 days
 
-## Final Product
+A RESTful application using  Express framework and Node to let users shorten long URLs into bit.ly form.
+
+### Final Product
 
 ![Login Page](display/loginPage.png)
-
 ![Account 1 Login](display/1stAccLogin.png)
-![Account 2 Login](display/1stAccLogin.png)
-![New and Update url Page](display/newAndEditPage.png)
+![Account 2 Login](display/2ndAccLogin.png)
+![Create Bitly Page](display/createBitlyPage.png)
+![Edit Bitly Page](display/editPage.png)
 
-## Dependencies
+### Dependencies
 
 - Node.js
 - Express
@@ -19,7 +21,7 @@ A full stack web application built with Node and Express that allows users to sh
 - body-parser
 - cookie-session
 
-## Getting Started
+### Getting Started
 
 - Install all dependencies (using the `npm install` command).
 - Run the development web server using the `npm start` command.
